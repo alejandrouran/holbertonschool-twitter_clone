@@ -1,76 +1,120 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/screens/signin_screen.dart';
 
 class SideBarMenu extends StatefulWidget {
-  const SideBarMenu({
-    Key? key,
-  }) : super(key: key);
+  const SideBarMenu({super.key});
 
   @override
-  State<SideBarMenu> createState() => MState();
+  State<SideBarMenu> createState() => _SideBarMenuState();
 }
 
-class MState extends State<SideBarMenu> {
+class _SideBarMenuState extends State<SideBarMenu> {
   @override
   void initState() {
     super.initState();
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext action) {
+  Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        children: <Widget>[
-          DrawerHeader(
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[CircleAvatar(backgroundImage: NetworkImage('https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM'), maxRadius: 27,),],
+        children: [
+          Column(
+            children: [
+              DrawerHeader(
+                padding: const EdgeInsets.all(20),
+                child: Align(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: const [
+                          CircleAvatar(
+                            backgroundImage:
+                            NetworkImage('https://i.pravatar.cc/150'),
+                            radius: 30.0,
+                          ),
+                          SizedBox(
+                            width: 200,
+                          )
+                        ],
+                      ),
+                      const Expanded(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(
+                            "User Name",
+                            style: TextStyle(
+                              color: Colors.black45,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(5),
+                            child: const Text("0 Followers"),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(5),
+                            child: const Text("0 Following"),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    children: <Widget>[Text('Jane Doe',),],
-                  ),),
-                Row(
-                  children: <Widget>[Text('275 Followers'), SizedBox(width: 20), Text('352 Following'),],
-                ),],),),
-          ListTile(
-            leading: Icon(Icons.man),
-            title: Text('Profile'),
-            onTap: () => null,
+              ),
+            ],
           ),
           ListTile(
-            leading: Icon(Icons.notes),
-            title: Text('Lists'),
-            onTap: () => null,
+            leading: const Icon(Icons.person),
+            title: const Text('Profile'),
+            onTap: () => {},
           ),
           ListTile(
-            leading: Icon(Icons.bookmark),
-            title: Text('Bookmark'),
-            onTap: () => null,
+            leading: const Icon(Icons.list),
+            title: const Text('Lists'),
+            onTap: () => {},
           ),
           ListTile(
-            leading: Icon(Icons.flash_on_sharp),
-            title: Text('Moments'),
-            onTap: () => null,
+            leading: const Icon(Icons.bookmark),
+            title: const Text('Bookmark'),
+            onTap: () => {},
           ),
           ListTile(
-            title: Text('Settings and privacy', style: TextStyle(fontWeight: FontWeight.bold,)
-            ),
-            onTap: () => null,
+            leading: const Icon(Icons.flash_on),
+            title: const Text('Moments'),
+            onTap: () => {},
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text('Settings and privacy'),
+            onTap: () => {},
           ),
           ListTile(
-            title: Text('Help Center', style: TextStyle(fontWeight: FontWeight.bold,)),
-            onTap: () => null,
+            title: const Text('Help Center'),
+            onTap: () => {},
           ),
+          const Divider(),
           ListTile(
-            title: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold,)),
-            onTap: () => null,
-          ),],),);
+            title: const Text('Logout'),
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SignIn(),
+                ),
+              )
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,69 +1,96 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:twitter/widgets/entry_field.dart';
 import 'package:twitter/widgets/flat_button.dart';
 
-class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({
-    Key? key,
-  }) : super(key: key);
-
+class ForgetPassword extends StatefulWidget {
+  const ForgetPassword({super.key});
 
   @override
-  State<ForgotPassword> createState() => FState();
+  State<ForgetPassword> createState() => _ForgetPasswordState();
 }
 
-class FState extends State<ForgotPassword> {
-  late TextEditingController _emailController;
+class _ForgetPasswordState extends State<ForgetPassword> {
+  TextEditingController _emailController = TextEditingController();
 
   @override
-  void initState() {
-    _emailController = TextEditingController();
+  initState() {
+    _emailController = _emailController;
     super.initState();
   }
 
   @override
-  void dispose() {
-    _emailController.dispose();
+  dispose() {
+    _emailController = _emailController;
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext action) {
+  Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: const Color.fromARGB(255, 247, 246, 246),
       appBar: AppBar(
-        leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            color: Colors.blue,
-            onPressed: () => {
-              Navigator.pop(action),
-            }
+        leading: BackButton(
+          color: Colors.blue,
+          onPressed: (() {
+            Navigator.of(context).pop();
+          }),
         ),
+        elevation: 0.0,
         backgroundColor: Colors.white,
+        centerTitle: true,
+        title: const Text(
+          "Forgot password",
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text(
-                'Forget Password',
-                style: TextStyle(fontWeight: FontWeight.bold,),),
-              Container(
-                padding: const EdgeInsets.all(30),
-                child: Text(
-                  'Enter your email address below to receive password reset instruction.',
-                  style: TextStyle(
-                    color: Colors.grey.shade600, // original 200 but it is very light and hardly noticeable
-                  ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 150,
+            ),
+            Center(
+              child: Text(
+                "Forget password",
+                style: GoogleFonts.mulish(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 20,
                 ),
               ),
-              CustomEntryField(
-                hint: 'Enter email',
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Text(
+                "Enter your email address below to\nreceive password reset instructions",
+                style: GoogleFonts.mulish(
+                  color: Colors.grey.shade500,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+            Center(
+              child: CustomEntryField(
+                hint: 'Enter Email',
                 controller: _emailController,
                 isPassword: false,
               ),
-              CustomFlatButton(
-                label: 'Submit',
-                onPressed: () => null,
-              ),],),),),);
+            ),
+            Center(
+              child: CustomFlatButton(
+                label: "Submit",
+                onPressed: () {},
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

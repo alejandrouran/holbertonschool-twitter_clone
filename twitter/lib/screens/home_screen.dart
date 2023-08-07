@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/widgets/bar_menu.dart';
+import 'package:twitter/widgets/side_bar_menu.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    Key? key,
-  }) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => HState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class HState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -24,12 +23,15 @@ class HState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideBarMenu(),
       appBar: AppBar(
-        title: Text(
-          'Home',
-          style: TextStyle(color: Colors.black,
-          ),),
-        backgroundColor: Colors.blue,),);
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        title: const Text('Home', style: TextStyle(color: Colors.blue)),
+        iconTheme: const IconThemeData(color: Colors.blue),
+      ),
+      drawer: const SideBarMenu(),
+      body: Container(),
+      bottomNavigationBar: const BottomBarMenu(),
+    );
   }
 }
