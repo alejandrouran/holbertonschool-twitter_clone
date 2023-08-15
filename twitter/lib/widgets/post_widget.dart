@@ -1,72 +1,125 @@
 import 'package:flutter/material.dart';
 
 class PostWidget extends StatelessWidget {
-  const PostWidget({super.key});
+  final Post post;
+  final String name;
+  final String subname;
+  final String Imgurl;
+
+  const PostWidget({
+    super.key,
+    required this.post,
+    required this.name,
+    required this.subname,
+    required this.Imgurl,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://cdn.pocket-lint.com/r/s/1200x/assets/images/153339-games-news-does-mario-sunbathing-pic-mean-mario-sunshine-for-switch-is-near-image1-9zsg71zrml.jpg')),
-              Text('Mario', style: TextStyle(fontWeight: FontWeight.bold)),
-              Icon(Icons.verified, color: Colors.blue),
-              Text('@SuperMario 1h', style: TextStyle(color: Colors.grey)),
-              Icon(Icons.more_horiz),
-            ],
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.all(20),
-          child: Center(
-            child: Text(
-                "If you're a Nintendo Switch Online + Expansion Pack member, you can already download the Mario Kart 8 Deluxe - Booster Course Pass at no additional cost now and be ready to play at launch this Friday!... 🎮🎮"),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: const [
-                  Icon(Icons.comment, color: Colors.grey),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10),
-                    child: Text(
-                      '0',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                  Icon(Icons.repeat, color: Colors.grey),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10),
-                    child: Text(
-                      '0',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                  Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                  ),
-                  Text(
-                    '2',
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
+    return Padding(
+      padding: const EdgeInsets.all(19),
+      child: Container(
+        child: Row(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: CircleAvatar(
+                radius: 25,
+                backgroundImage: NetworkImage(Imgurl),
               ),
-              const Icon(Icons.share, color: Colors.grey),
-            ],
-          ),
-        )
-      ],
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "$name",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Icon(
+                      Icons.verified,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "@$subname",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.grey.shade400),
+                    ),
+                    SizedBox(
+                      width: 62,
+                    ),
+                    IconButton(
+                        onPressed: () => Null,
+                        icon: Icon(
+                          Icons.more_horiz,
+                          size: 30.0,
+                        )),
+                  ],
+                ),
+                Expanded(
+                  child: Container(
+                    width: 254,
+                    height: 100,
+                    //color: Colors.blue,
+                    child: Text(
+                      post,
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: () => Null,
+                        icon: Icon(
+                          Icons.sms_outlined,
+                          size: 30.0,
+                          color: Colors.grey.shade600,
+                        )),
+                    IconButton(
+                        onPressed: () => Null,
+                        icon: Icon(
+                          Icons.repeat_outlined,
+                          size: 30.0,
+                          color: Colors.grey.shade600,
+                        )),
+                    IconButton(
+                        onPressed: () => Null,
+                        icon: Icon(
+                          Icons.favorite,
+                          size: 30.0,
+                          color: Color.fromARGB(255, 244, 41, 108),
+                        )),
+                    IconButton(
+                        onPressed: () => Null,
+                        icon: Icon(
+                          Icons.share,
+                          size: 30.0,
+                          color: Colors.grey.shade600,
+                        )),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

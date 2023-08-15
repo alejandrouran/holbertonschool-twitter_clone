@@ -61,3 +61,15 @@ class User {
     return data;
   }
 }
+
+User createNewUser() {
+  final uuid = Uuid();
+  String userID = uuid.v4();
+  String userName = uuid.v4().substring(0, 8);
+  return User(
+    userID: userID,
+    userName: userName,
+    imageUrl: 'imageUrl',
+    coverImgUrl: 'coverImgUrl',
+  );
+}
